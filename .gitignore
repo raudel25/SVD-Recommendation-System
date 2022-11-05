@@ -454,4 +454,5 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 svd-report.aux
 svd-report.log
+svd-report.out
 svd-report.synctex.gz

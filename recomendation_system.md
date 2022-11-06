@@ -170,7 +170,7 @@ $$
 Pero es necesario además hacer una regularización para evitar el *Outfitting*, así, es posible llegar a:
 
 $$
-(e_{i, j})^2 = (A_{i, j} - \sum q_{i, n}\cdot p_{n, j})^2 + \frac{\lambda}{2} \cdot (q_{i} + p_{j}) \space (1)
+(e_{i, j})^2 = (A_{i, j} - \sum q_{i, n}\cdot p_{n, j})^2 + \frac{\lambda}{2} \cdot (||q_{i}||^2 + ||p_{j}||^2) \space (1)
 $$
 
 Donde $\lambda$ es una constante de regularización.

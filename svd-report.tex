@@ -1,7 +1,7 @@
 \documentclass{article}
 
 \usepackage[utf8]{inputenc} 
-	\usepackage[text={18cm,21cm},centering]{geometry}
+	\usepackage[text={20cm,24cm},centering]{geometry}
 	\usepackage{amsmath,amssymb,amsfonts,latexsym,cancel} 
 	\usepackage[T1]{fontenc} % Comandos personales - especiales 
 	\usepackage{titlesec} 
@@ -21,31 +21,26 @@
 \newtheorem{defn}[thm]{Definición}
 \newtheorem{rem}[thm]{Observación}
 
-% De la misma forma se pueden definir comandos con argumentos. Por
-% ejemplo, aquí definimos un comando para escribir el valor absoluto
-% de algo más fácilmente.
-%--------------------------------------------------------------------------
-\newcommand{\abs}[1]{\left\vert#1\right\vert}
-
-% Operadores.
-% Los operadores nuevos deben definirse como tales para que aparezcan
-% correctamente. Como ejemplo definimos en jacobiano:
-%--------------------------------------------------------------------------
-\DeclareMathOperator{\Jac}{Jac}
-
-%--------------------------------------------------------------------------
-\title{Sistemas de Recomendación basados en SVD}
-\author{Daniel Abad Fundora C212\\
-		Anabel Benítez González C211\\
-		Raudel Alejandro Gómez Molina C211\\
-		Alex Sierra Alcalá C211\\\\		
-  \small SVD: Siempre venciendo desafios\\
-  \small Matemática Numérica\\
-  \small Facultad de Matemática y Computación 
-}
 
 \begin{document}
-\maketitle
+\begin{titlepage}
+\centering
+{\bfseries\LARGE Facultad de Matemática y Computación (UH) \par}
+\vspace{1cm}
+{\scshape\Large Matemática Numérica \par}
+\vspace{3cm}
+{\scshape\Huge Sistemas de Recomendación \\basados en SVD \par}
+\vspace{3cm}
+{\itshape\Large SVD: Siempre Venciendo Desafios \par}
+\vfill
+{\Large Autores: \par}
+{\Large Daniel Abad Fundora C212\\
+		Anabel Benítez González C211\\
+		Raudel Alejandro Gómez Molina C211\\
+		Alex Sierra Alcalá C211\\ \par}
+\vfill
+{\Large Noviembre 2022 \par}
+\end{titlepage}
 
 \section{Sistemas de Recomendación}
 
@@ -279,12 +274,16 @@ factores de ítems.
 
 \section{Creación del sistema de Recomendación en Python}
 
-Para la creación del sistema de recomendación usaremos la bibliotecas suprise y pandas.
+Conocemos lo complicado que resulta para un universitario elegir un tema para su tesis de grado, y aún más engorroso resulta el hecho de buscar entre la gran cantidad de temas que pueden existir y descartar aquellos que no interesan al estudiante, proponemos a partir del uso de un sistema de recomendación basado en SVD una solución para este problema. Dicha solución consiste en, teniendo en cuenta el recorrido del estudiante durante la carrera (en las asignaturas, proyectos e investigaciones extraclase) y además revisando las opiniones de usuarios con intereses afines a los suyos filtrar los temas y quedarnos solamente con los n (cantidad que se puede elegir) que resulten más interesantes para él.
+Así el indeciso universitario puede confiar totalmente en el programa y pedirle que le asigne un tema para la tesis, o puede simplemente pedir que le seleccione los 10 temas que más se apeguen a sus intereses y luego con calma elegir de esos cual es el más adecuado para él; pero siempre teniendo presente que no es lo mismo elegir uno entre 10 que elegir uno entre toda la lista de potenciales temas que puede haber en internet.
 
-Necesitamos tener un dataset que contenga los items que, queremos recomendarle al usuario, el cual debe estar ubicado en la carpeta data con el nombre de items.csv y contar con las propiedades: itemId, title, genres en ese orden. Además necesitaremos otro dataset que cuente con los items que cada usuario tuvo la experiencia de apreciar y dar su respectiva recomendación, el mismo debe estar ubicado en la carpeta data con el nombre de ratings.csv y contar con las siguientes propiedades:
-userId, itemId, rating, timestamp en ese orden.
+Para la creación del sistema de recomendación en Python usaremos las bibliotecas suprise y pandas.
+Necesitamos tener un dataset que contenga los temas de investigación (contaremos asiganturas o sus proyectos como temas para aquellas personas que no están muy vinculadas a los proyectos extraclase), este dataset debe estar ubicado en la carpeta data con el nombre de items.csv y contar con las propiedades: itemId (un entero positivo, diferente para cada tema), title (el nombre del tema de investigacion o asigantura), genres(departamentos a los cuales está vinculado dicho tema o asignatura).
+Además necesitaremos otro dataset que cuente con los temas que cada usuario ha podido evaluar, el mismo debe estar ubicado en la carpeta data con el nombre de ratings.csv y contar con las siguientes propiedades: userId (un entero positivo, diferente para cada usuario), itemId (el itemId correspondiente al tema que se evalúa), rating (un real en el rango [2,5], en el caso de las asignaturas lo interpretamos como la nota que se obtuvo, en el caso de los temas cada ususario les asigna un valor en función de cuán útil es para la sociedad, cuánto aporta la investigación del tema a la rama o cuán interesante resulta el tema para el usuario).
 
-Primero necesitamos cargar los datasets, esto lo haremos mediante pandas, luego luego debemos darle formato a nuestros datos para que sean reconocidos por el sistema, seguidamente procedemos a realizar el entrenamiento y el testing de los datos. Después de culminar el proceso anterior pasamos anterior entrenamos todos nuestros datos y creamos nuestra función de recomendación la cual recibe el id del usuario al cual queremos recomendar, el dataset con los datos, el modelo entrenado y la cantidad de items que queremos recomendarle al usuario.
+Primero necesitamos cargar los datasets, esto lo haremos mediante pandas, luego debemos darle formato a nuestros datos para que sean reconocidos por el sistema, seguidamente procedemos a realizar el entrenamiento y el testing de los datos. Después de culminar el proceso anterior pasamos anterior entrenamos todos nuestros datos y creamos nuestra función de recomendación la cual recibe el id del usuario al cual queremos recomendar, el dataset con los datos, el modelo entrenado y la cantidad de items que queremos recomendarle al usuario.
+
+Actualmente probamos nuestro modelo con un dataset que contiene películas y las recomendacines hechas por varios usuarios, proximamente convocamos a la facultad a un trabajo conjunto para la elaboración de un dataset con los datos antes planteados para su ejecución y evaluación en el proceso descrito anteriormente.
 
 El código fuente se encuentra disponible en \url{https://github.com/raudel25/SVD-SRI.git}
 

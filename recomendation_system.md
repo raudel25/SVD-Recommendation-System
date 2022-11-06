@@ -164,7 +164,7 @@ $$
 O sea, intentar encontrar el error mínimo para hacer la mejor aproximacón de la siguiente forma:
 
 $$
-min_{p^*, q^*} = \sum (A_{i, j} - q_{i, n}\cdot p_{n, j})^2
+min_{p, q} = \sum (A_{i, j} - q_{i, n}\cdot p_{n, j})^2
 $$
 
 Pero es necesario además hacer una regularización para evitar el *Outfitting*, así, es posible llegar a:
